@@ -441,7 +441,7 @@ export default function LandingPage() {
             {/* Location 3 */}
             <div className="group relative aspect-[4/5] overflow-hidden cursor-pointer bg-neutral-100">
               <Image 
-                src="https://images.unsplash.com/photo-1580659328774-c59dd1eb38f7?q=80&w=600&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1540974100753-2c174e50811b?q=80&w=600&auto=format&fit=crop" 
                 fill 
                 className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
                 alt="Beverly Hills" 
