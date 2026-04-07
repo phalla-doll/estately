@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -11,10 +14,107 @@ import {
   ChevronDown,
   Menu,
   Star,
-  Quote
+  Quote,
+  SlidersHorizontal
 } from "lucide-react";
 
+const propertiesData = [
+  {
+    id: 1,
+    name: "Greenville",
+    location: "Aspen, USA",
+    price: 7000000,
+    beds: 5,
+    baths: 5,
+    sqft: 4200,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 2,
+    name: "Mountain Chalet",
+    location: "Aspen, USA",
+    price: 4800000,
+    beds: 4,
+    baths: 3,
+    sqft: 2800,
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 3,
+    name: "Manhattan Penthouse",
+    location: "New York, USA",
+    price: 6500000,
+    beds: 6,
+    baths: 4,
+    sqft: 3500,
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 4,
+    name: "Beverly Hills Estate",
+    location: "Beverly Hills, CA",
+    price: 12500000,
+    beds: 7,
+    baths: 8,
+    sqft: 8500,
+    image: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 5,
+    name: "Oceanfront Villa",
+    location: "Miami, FL",
+    price: 8200000,
+    beds: 5,
+    baths: 6,
+    sqft: 6100,
+    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 6,
+    name: "Modern Minimalist",
+    location: "Austin, TX",
+    price: 3100000,
+    beds: 4,
+    baths: 3,
+    sqft: 3200,
+    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop"
+  }
+];
+
 export default function LandingPage() {
+  const [priceFilter, setPriceFilter] = useState("all");
+  const [bedsFilter, setBedsFilter] = useState("all");
+  const [bathsFilter, setBathsFilter] = useState("all");
+
+  const filteredProperties = propertiesData.filter(prop => {
+    let priceMatch = true;
+    if (priceFilter === "under5") priceMatch = prop.price < 5000000;
+    else if (priceFilter === "5to10") priceMatch = prop.price >= 5000000 && prop.price <= 10000000;
+    else if (priceFilter === "over10") priceMatch = prop.price > 10000000;
+
+    let bedsMatch = true;
+    if (bedsFilter !== "all") {
+      if (bedsFilter === "6+") bedsMatch = prop.beds >= 6;
+      else bedsMatch = prop.beds === parseInt(bedsFilter);
+    }
+
+    let bathsMatch = true;
+    if (bathsFilter !== "all") {
+      if (bathsFilter === "6+") bathsMatch = prop.baths >= 6;
+      else bathsMatch = prop.baths === parseInt(bathsFilter);
+    }
+
+    return priceMatch && bedsMatch && bathsMatch;
+  });
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0
+    }).format(price);
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
       {/* Navbar */}
@@ -134,7 +234,7 @@ export default function LandingPage() {
 
       {/* Best Houses Section */}
       <section className="container mx-auto px-6 py-32">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-neutral-900 mb-4">Our Best Houses</h2>
             <p className="text-neutral-500 max-w-md">Explore our handpicked selection of premium properties designed for modern living.</p>
@@ -144,254 +244,118 @@ export default function LandingPage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {/* Property Card 1 */}
-          <div className="group cursor-pointer">
-            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
-              <Image
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"
-                alt="Greenville"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
-                For Sale
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
-                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Aspen, USA
-              </div>
-              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Greenville</h3>
-              
-              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
-                <div className="flex items-center gap-2">
-                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>5 Beds</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>5 Baths</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4,200 sqft</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
-                <div className="text-2xl font-display font-medium text-neutral-900">$7,000,000</div>
-                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
-                </div>
-              </div>
-            </div>
+        {/* Filters */}
+        <div className="flex flex-wrap items-center gap-4 mb-12 pb-6 border-b border-neutral-200">
+          <div className="flex items-center gap-2 text-neutral-400 mr-2">
+            <SlidersHorizontal className="w-4 h-4" strokeWidth={1.5} />
+            <span className="text-sm font-medium uppercase tracking-wider">Filters:</span>
+          </div>
+          
+          <div className="relative">
+            <select 
+              value={priceFilter} 
+              onChange={(e) => setPriceFilter(e.target.value)} 
+              className="appearance-none bg-white border border-neutral-200 text-neutral-700 text-sm font-medium rounded-full px-5 py-2.5 pr-10 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 cursor-pointer transition-all"
+            >
+              <option value="all">Any Price</option>
+              <option value="under5">Under $5M</option>
+              <option value="5to10">$5M - $10M</option>
+              <option value="over10">Over $10M</option>
+            </select>
+            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" strokeWidth={1.5} />
           </div>
 
-          {/* Property Card 2 */}
-          <div className="group cursor-pointer">
-            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
-              <Image
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop"
-                alt="Mountain Chalet"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
-                For Sale
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
-                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Aspen, USA
-              </div>
-              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Mountain Chalet</h3>
-              
-              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
-                <div className="flex items-center gap-2">
-                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4 Beds</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3 Baths</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>2,800 sqft</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
-                <div className="text-2xl font-display font-medium text-neutral-900">$4,800,000</div>
-                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
-                </div>
-              </div>
-            </div>
+          <div className="relative">
+            <select 
+              value={bedsFilter} 
+              onChange={(e) => setBedsFilter(e.target.value)} 
+              className="appearance-none bg-white border border-neutral-200 text-neutral-700 text-sm font-medium rounded-full px-5 py-2.5 pr-10 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 cursor-pointer transition-all"
+            >
+              <option value="all">Any Beds</option>
+              <option value="3">3 Beds</option>
+              <option value="4">4 Beds</option>
+              <option value="5">5 Beds</option>
+              <option value="6+">6+ Beds</option>
+            </select>
+            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" strokeWidth={1.5} />
           </div>
 
-          {/* Property Card 3 */}
-          <div className="group cursor-pointer">
-            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
-              <Image
-                src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop"
-                alt="Manhattan"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
-                For Sale
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
-                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> New York, USA
-              </div>
-              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Manhattan Penthouse</h3>
-              
-              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
-                <div className="flex items-center gap-2">
-                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>6 Beds</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4 Baths</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3,500 sqft</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
-                <div className="text-2xl font-display font-medium text-neutral-900">$6,500,000</div>
-                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
-                </div>
-              </div>
-            </div>
+          <div className="relative">
+            <select 
+              value={bathsFilter} 
+              onChange={(e) => setBathsFilter(e.target.value)} 
+              className="appearance-none bg-white border border-neutral-200 text-neutral-700 text-sm font-medium rounded-full px-5 py-2.5 pr-10 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 cursor-pointer transition-all"
+            >
+              <option value="all">Any Baths</option>
+              <option value="3">3 Baths</option>
+              <option value="4">4 Baths</option>
+              <option value="5">5 Baths</option>
+              <option value="6+">6+ Baths</option>
+            </select>
+            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" strokeWidth={1.5} />
           </div>
-
-          {/* Property Card 4 */}
-          <div className="group cursor-pointer">
-            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
-              <Image
-                src="https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=800&auto=format&fit=crop"
-                alt="Beverly Hills Estate"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
-                For Sale
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
-                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Beverly Hills, CA
-              </div>
-              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Beverly Hills Estate</h3>
-              
-              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
-                <div className="flex items-center gap-2">
-                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>7 Beds</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>8 Baths</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>8,500 sqft</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
-                <div className="text-2xl font-display font-medium text-neutral-900">$12,500,000</div>
-                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Property Card 5 */}
-          <div className="group cursor-pointer">
-            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
-              <Image
-                src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800&auto=format&fit=crop"
-                alt="Oceanfront Villa"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
-                For Sale
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
-                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Miami, FL
-              </div>
-              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Oceanfront Villa</h3>
-              
-              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
-                <div className="flex items-center gap-2">
-                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>5 Beds</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>6 Baths</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>6,100 sqft</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
-                <div className="text-2xl font-display font-medium text-neutral-900">$8,200,000</div>
-                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Property Card 6 */}
-          <div className="group cursor-pointer">
-            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
-              <Image
-                src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop"
-                alt="Modern Minimalist"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
-                For Sale
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
-                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Austin, TX
-              </div>
-              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Modern Minimalist</h3>
-              
-              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
-                <div className="flex items-center gap-2">
-                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4 Beds</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3 Baths</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3,200 sqft</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
-                <div className="text-2xl font-display font-medium text-neutral-900">$3,100,000</div>
-                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        {filteredProperties.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {filteredProperties.map((property) => (
+              <div key={property.id} className="group cursor-pointer">
+                <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
+                  <Image
+                    src={property.image}
+                    alt={property.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
+                    For Sale
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
+                    <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> {property.location}
+                  </div>
+                  <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">{property.name}</h3>
+                  
+                  <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
+                    <div className="flex items-center gap-2">
+                      <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>{property.beds} Beds</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>{property.baths} Baths</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>{property.sqft.toLocaleString()} sqft</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
+                    <div className="text-2xl font-display font-medium text-neutral-900">{formatPrice(property.price)}</div>
+                    <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
+                      <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-white border border-neutral-100 rounded-2xl">
+            <h3 className="text-xl font-display font-medium text-neutral-900 mb-2">No properties found</h3>
+            <p className="text-neutral-500">Try adjusting your filters to see more results.</p>
+            <button 
+              onClick={() => {
+                setPriceFilter("all");
+                setBedsFilter("all");
+                setBathsFilter("all");
+              }}
+              className="mt-6 text-sm font-medium border-b border-neutral-900 pb-1"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
       </section>
 
       {/* Neighborhoods Section */}
