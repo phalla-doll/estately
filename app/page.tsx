@@ -18,7 +18,8 @@ import {
   SlidersHorizontal,
   Phone,
   Mail,
-  Linkedin
+  Linkedin,
+  Heart
 } from "lucide-react";
 
 const propertiesData = [
@@ -127,6 +128,15 @@ export default function LandingPage() {
   const [priceFilter, setPriceFilter] = useState("all");
   const [bedsFilter, setBedsFilter] = useState("all");
   const [bathsFilter, setBathsFilter] = useState("all");
+  const [savedProperties, setSavedProperties] = useState<number[]>([]);
+
+  const toggleSave = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSavedProperties(prev => 
+      prev.includes(id) ? prev.filter(pId => pId !== id) : [...prev, id]
+    );
+  };
 
   const filteredProperties = propertiesData.filter(prop => {
     let priceMatch = true;
@@ -353,6 +363,16 @@ export default function LandingPage() {
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
                     For Sale
                   </div>
+                  <button 
+                    onClick={(e) => toggleSave(e, property.id)}
+                    className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-white/90 backdrop-blur-md hover:bg-white transition-colors"
+                    aria-label={savedProperties.includes(property.id) ? "Unsave property" : "Save property"}
+                  >
+                    <Heart 
+                      className={`w-4 h-4 transition-colors ${savedProperties.includes(property.id) ? "fill-red-500 text-red-500" : "text-neutral-900"}`} 
+                      strokeWidth={1.5} 
+                    />
+                  </button>
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
