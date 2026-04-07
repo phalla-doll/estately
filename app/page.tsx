@@ -10,6 +10,8 @@ import {
   Check,
   ChevronDown,
   Menu,
+  Star,
+  Quote
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -226,7 +228,7 @@ export default function LandingPage() {
           </div>
 
           {/* Property Card 3 */}
-          <div className="group cursor-pointer hidden lg:block">
+          <div className="group cursor-pointer">
             <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
               <Image
                 src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop"
@@ -265,11 +267,212 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
+
+          {/* Property Card 4 */}
+          <div className="group cursor-pointer">
+            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
+              <Image
+                src="https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=800&auto=format&fit=crop"
+                alt="Beverly Hills Estate"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
+                For Sale
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
+                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Beverly Hills, CA
+              </div>
+              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Beverly Hills Estate</h3>
+              
+              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
+                <div className="flex items-center gap-2">
+                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>7 Beds</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>8 Baths</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>8,500 sqft</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
+                <div className="text-2xl font-display font-medium text-neutral-900">$12,500,000</div>
+                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
+                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Property Card 5 */}
+          <div className="group cursor-pointer">
+            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
+              <Image
+                src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800&auto=format&fit=crop"
+                alt="Oceanfront Villa"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
+                For Sale
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
+                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Miami, FL
+              </div>
+              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Oceanfront Villa</h3>
+              
+              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
+                <div className="flex items-center gap-2">
+                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>5 Beds</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>6 Baths</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>6,100 sqft</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
+                <div className="text-2xl font-display font-medium text-neutral-900">$8,200,000</div>
+                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
+                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Property Card 6 */}
+          <div className="group cursor-pointer">
+            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
+              <Image
+                src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop"
+                alt="Modern Minimalist"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
+                For Sale
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
+                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Austin, TX
+              </div>
+              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Modern Minimalist</h3>
+              
+              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
+                <div className="flex items-center gap-2">
+                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4 Beds</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3 Baths</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3,200 sqft</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
+                <div className="text-2xl font-display font-medium text-neutral-900">$3,100,000</div>
+                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
+                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Neighborhoods Section */}
+      <section className="bg-white py-32 border-t border-neutral-100">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-neutral-900 mb-4">Explore Neighborhoods</h2>
+              <p className="text-neutral-500 max-w-md">Discover exclusive properties in the most sought-after locations across the country.</p>
+            </div>
+            <Link href="#" className="group flex items-center gap-2 text-sm font-medium text-neutral-900 transition-colors uppercase tracking-widest border-b border-transparent hover:border-neutral-900 pb-1">
+              All Locations <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Location 1 */}
+            <div className="group relative aspect-[4/5] overflow-hidden cursor-pointer bg-neutral-100">
+              <Image 
+                src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?q=80&w=600&auto=format&fit=crop" 
+                fill 
+                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+                alt="Miami" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-2xl font-display font-medium text-white mb-1">Miami</h3>
+                <p className="text-white/70 text-sm">42 Properties</p>
+              </div>
+            </div>
+            
+            {/* Location 2 */}
+            <div className="group relative aspect-[4/5] overflow-hidden cursor-pointer bg-neutral-100">
+              <Image 
+                src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=600&auto=format&fit=crop" 
+                fill 
+                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+                alt="New York" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-2xl font-display font-medium text-white mb-1">New York</h3>
+                <p className="text-white/70 text-sm">86 Properties</p>
+              </div>
+            </div>
+
+            {/* Location 3 */}
+            <div className="group relative aspect-[4/5] overflow-hidden cursor-pointer bg-neutral-100">
+              <Image 
+                src="https://images.unsplash.com/photo-1580659328774-c59dd1eb38f7?q=80&w=600&auto=format&fit=crop" 
+                fill 
+                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+                alt="Beverly Hills" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-2xl font-display font-medium text-white mb-1">Beverly Hills</h3>
+                <p className="text-white/70 text-sm">35 Properties</p>
+              </div>
+            </div>
+
+            {/* Location 4 */}
+            <div className="group relative aspect-[4/5] overflow-hidden cursor-pointer bg-neutral-100">
+              <Image 
+                src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?q=80&w=600&auto=format&fit=crop" 
+                fill 
+                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+                alt="Aspen" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-2xl font-display font-medium text-white mb-1">Aspen</h3>
+                <p className="text-white/70 text-sm">28 Properties</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* What We Do Section */}
-      <section className="bg-white py-32 border-y border-neutral-100">
+      <section className="bg-white py-32 border-t border-neutral-100">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-20 items-center">
             {/* Left Collage */}
@@ -367,6 +570,78 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="bg-[#FAFAFA] py-32 border-t border-neutral-100">
+        <div className="container mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-20">
+            <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-neutral-900 mb-4">Client Stories</h2>
+            <p className="text-neutral-500 text-lg font-light">Hear from those who have found their perfect home with Estately.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Review Card 1 */}
+            <div className="bg-white p-10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-neutral-100 relative">
+              <Quote className="absolute top-10 right-10 w-12 h-12 text-neutral-100" strokeWidth={1} />
+              <div className="flex gap-1 mb-6">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-neutral-900 text-neutral-900" />)}
+              </div>
+              <p className="text-neutral-600 leading-relaxed mb-10 relative z-10 font-light">
+                "Estately made finding our dream home an absolute breeze. Their exclusive access to off-market properties gave us options we couldn't find anywhere else."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-neutral-100">
+                  <Image src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" fill className="object-cover" alt="Sarah Jenkins" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 text-sm">Sarah Jenkins</h4>
+                  <p className="text-xs text-neutral-500">Homeowner in Aspen</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Review Card 2 */}
+            <div className="bg-white p-10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-neutral-100 relative">
+              <Quote className="absolute top-10 right-10 w-12 h-12 text-neutral-100" strokeWidth={1} />
+              <div className="flex gap-1 mb-6">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-neutral-900 text-neutral-900" />)}
+              </div>
+              <p className="text-neutral-600 leading-relaxed mb-10 relative z-10 font-light">
+                "The level of professionalism and dedication from the Estately team is unmatched. They understood exactly what we were looking for and delivered beyond expectations."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-neutral-100">
+                  <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" fill className="object-cover" alt="Michael Chen" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 text-sm">Michael Chen</h4>
+                  <p className="text-xs text-neutral-500">Investor in New York</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Review Card 3 */}
+            <div className="bg-white p-10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-neutral-100 relative">
+              <Quote className="absolute top-10 right-10 w-12 h-12 text-neutral-100" strokeWidth={1} />
+              <div className="flex gap-1 mb-6">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-neutral-900 text-neutral-900" />)}
+              </div>
+              <p className="text-neutral-600 leading-relaxed mb-10 relative z-10 font-light">
+                "From the first consultation to closing, the process was seamless. They handled all the complexities of buying a luxury property, allowing us to just enjoy the experience."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-neutral-100">
+                  <Image src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" fill className="object-cover" alt="Elena Rodriguez" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 text-sm">Elena Rodriguez</h4>
+                  <p className="text-xs text-neutral-500">Homeowner in Miami</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Stats / Founder Section */}
       <section className="bg-[#0A0A0A] text-white py-32">
         <div className="container mx-auto px-6">
@@ -399,6 +674,27 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-neutral-900 text-white py-32 text-center px-6 relative overflow-hidden">
+        {/* Subtle background pattern/gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_100%)]"></div>
+        
+        <div className="max-w-3xl mx-auto relative z-10">
+          <h2 className="text-4xl md:text-6xl font-display font-medium tracking-tight mb-6">Ready to find your dream home?</h2>
+          <p className="text-neutral-400 text-lg mb-12 font-light max-w-xl mx-auto">
+            Join our exclusive network of buyers and sellers to experience real estate at its finest.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button className="w-full sm:w-auto bg-white text-neutral-900 px-8 py-4 hover:bg-neutral-200 transition-colors text-sm font-medium tracking-wide">
+              Browse Properties
+            </button>
+            <button className="w-full sm:w-auto bg-transparent border border-white/30 text-white px-8 py-4 hover:bg-white/10 transition-colors text-sm font-medium tracking-wide">
+              Contact an Agent
+            </button>
           </div>
         </div>
       </section>
