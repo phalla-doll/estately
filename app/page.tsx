@@ -64,7 +64,7 @@ export default function LandingPage() {
           {/* Right Image Side */}
           <div className="w-full md:w-[55%] relative h-full hidden md:block">
             <Image
-              src="https://picsum.photos/seed/modernhouse/1600/1200"
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1600&auto=format&fit=crop"
               alt="Modern House"
               fill
               className="object-cover"
@@ -147,7 +147,7 @@ export default function LandingPage() {
           <div className="group cursor-pointer">
             <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
               <Image
-                src="https://picsum.photos/seed/house1/800/600"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"
                 alt="Greenville"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -188,7 +188,7 @@ export default function LandingPage() {
           <div className="group cursor-pointer">
             <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
               <Image
-                src="https://picsum.photos/seed/house2/800/600"
+                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop"
                 alt="Mountain Chalet"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -229,7 +229,7 @@ export default function LandingPage() {
           <div className="group cursor-pointer hidden lg:block">
             <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
               <Image
-                src="https://picsum.photos/seed/house3/800/600"
+                src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop"
                 alt="Manhattan"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -277,7 +277,7 @@ export default function LandingPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 relative aspect-[21/9] overflow-hidden bg-neutral-100">
                   <Image
-                    src="https://picsum.photos/seed/mansion1/1000/500"
+                    src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1000&auto=format&fit=crop"
                     alt="Mansion"
                     fill
                     className="object-cover"
@@ -286,7 +286,7 @@ export default function LandingPage() {
                 </div>
                 <div className="relative aspect-square overflow-hidden bg-neutral-100">
                   <Image
-                    src="https://picsum.photos/seed/pool/600/600"
+                    src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=600&auto=format&fit=crop"
                     alt="Pool"
                     fill
                     className="object-cover"
@@ -295,7 +295,7 @@ export default function LandingPage() {
                 </div>
                 <div className="relative aspect-square overflow-hidden bg-neutral-100">
                   <Image
-                    src="https://picsum.photos/seed/modern/600/600"
+                    src="https://images.unsplash.com/photo-1600585154526-990dced4ea0d?q=80&w=600&auto=format&fit=crop"
                     alt="Modern Home"
                     fill
                     className="object-cover"
