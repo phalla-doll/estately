@@ -15,7 +15,10 @@ import {
   Menu,
   Star,
   Quote,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Phone,
+  Mail,
+  Linkedin
 } from "lucide-react";
 
 const propertiesData = [
@@ -78,6 +81,45 @@ const propertiesData = [
     baths: 3,
     sqft: 3200,
     image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop"
+  }
+];
+
+const agentsData = [
+  {
+    id: 1,
+    name: "Alexander Wright",
+    role: "Principal Broker",
+    bio: "With over 15 years of experience in luxury real estate, Alexander specializes in exclusive off-market properties.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop",
+    email: "alexander@estately.com",
+    phone: "+1 (555) 123-4567"
+  },
+  {
+    id: 2,
+    name: "Sophia Chen",
+    role: "Senior Partner",
+    bio: "Sophia brings a global perspective to the New York market, connecting international buyers with premium estates.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
+    email: "sophia@estately.com",
+    phone: "+1 (555) 987-6543"
+  },
+  {
+    id: 3,
+    name: "Marcus Johnson",
+    role: "Luxury Specialist",
+    bio: "Marcus is known for his unparalleled knowledge of the Beverly Hills and Bel Air neighborhoods.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
+    email: "marcus@estately.com",
+    phone: "+1 (555) 456-7890"
+  },
+  {
+    id: 4,
+    name: "Isabella Rossi",
+    role: "Estates Director",
+    bio: "Isabella's keen eye for design and architecture helps clients find homes that are true masterpieces.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop",
+    email: "isabella@estately.com",
+    phone: "+1 (555) 234-5678"
   }
 ];
 
@@ -530,6 +572,55 @@ export default function LandingPage() {
                 Learn More About Us
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Agents Section */}
+      <section className="bg-white py-32 border-t border-neutral-100">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-neutral-900 mb-4">Meet Our Experts</h2>
+              <p className="text-neutral-500 max-w-md">Work with the industry's most dedicated and knowledgeable real estate professionals.</p>
+            </div>
+            <Link href="#" className="group flex items-center gap-2 text-sm font-medium text-neutral-900 transition-colors uppercase tracking-widest border-b border-transparent hover:border-neutral-900 pb-1">
+              View All Agents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {agentsData.map((agent) => (
+              <div key={agent.id} className="group">
+                <div className="relative aspect-[3/4] w-full overflow-hidden mb-6 bg-neutral-100">
+                  <Image
+                    src={agent.image}
+                    alt={agent.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out grayscale group-hover:grayscale-0"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-xl font-display font-medium text-neutral-900 mb-1">{agent.name}</h3>
+                  <p className="text-xs font-bold tracking-widest uppercase text-neutral-400 mb-4">{agent.role}</p>
+                  <p className="text-sm text-neutral-500 font-light leading-relaxed mb-6">
+                    {agent.bio}
+                  </p>
+                  <div className="flex items-center gap-4 border-t border-neutral-100 pt-4">
+                    <a href={`mailto:${agent.email}`} className="text-neutral-400 hover:text-neutral-900 transition-colors" aria-label="Email">
+                      <Mail className="w-4 h-4" strokeWidth={1.5} />
+                    </a>
+                    <a href={`tel:${agent.phone}`} className="text-neutral-400 hover:text-neutral-900 transition-colors" aria-label="Phone">
+                      <Phone className="w-4 h-4" strokeWidth={1.5} />
+                    </a>
+                    <a href="#" className="text-neutral-400 hover:text-neutral-900 transition-colors" aria-label="LinkedIn">
+                      <Linkedin className="w-4 h-4" strokeWidth={1.5} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
