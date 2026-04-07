@@ -3,120 +3,126 @@ import Link from "next/link";
 import {
   Home,
   MapPin,
-  Bed,
+  BedDouble,
   Bath,
-  Square,
+  Maximize,
   ArrowRight,
-  CheckCircle2,
+  Check,
   ChevronDown,
   Menu,
 } from "lucide-react";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
       {/* Navbar */}
-      <nav className="container mx-auto px-6 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Home className="w-6 h-6" />
-          <span className="text-xl font-bold tracking-tight">Estately</span>
-        </div>
-        
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-          <Link href="#" className="text-slate-900 border-b-2 border-slate-900 pb-1">Home</Link>
-          <Link href="#" className="hover:text-slate-900 transition-colors">Services</Link>
-          <Link href="#" className="hover:text-slate-900 transition-colors">Properties</Link>
-          <Link href="#" className="hover:text-slate-900 transition-colors">About</Link>
-          <Link href="#" className="hover:text-slate-900 transition-colors">Agents</Link>
-          <Link href="#" className="hover:text-slate-900 transition-colors">Contact</Link>
-        </div>
+      <nav className="absolute top-0 left-0 right-0 z-50">
+        <div className="container mx-auto px-6 py-8 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-white mix-blend-difference">
+            <Home className="w-5 h-5" strokeWidth={1.5} />
+            <span className="text-xl font-display font-medium tracking-tight">Estately</span>
+          </div>
+          
+          <div className="hidden md:flex items-center gap-10 text-sm font-medium text-neutral-400 mix-blend-difference">
+            <Link href="#" className="text-white transition-colors">Home</Link>
+            <Link href="#" className="hover:text-white transition-colors">Services</Link>
+            <Link href="#" className="hover:text-white transition-colors">Properties</Link>
+            <Link href="#" className="hover:text-white transition-colors">About</Link>
+            <Link href="#" className="hover:text-white transition-colors">Contact</Link>
+          </div>
 
-        <div className="hidden md:flex items-center gap-4">
-          <Link href="#" className="text-sm font-medium hover:text-slate-600 transition-colors">Log in</Link>
-          <Link href="#" className="text-sm font-medium bg-slate-900 text-white px-5 py-2.5 rounded-md hover:bg-slate-800 transition-colors">Sign up</Link>
-        </div>
+          <div className="hidden md:flex items-center gap-6 mix-blend-difference">
+            <Link href="#" className="text-sm font-medium text-white hover:text-neutral-300 transition-colors">Log in</Link>
+            <Link href="#" className="text-sm font-medium bg-white text-black px-6 py-2.5 hover:bg-neutral-200 transition-colors">Sign up</Link>
+          </div>
 
-        <button className="md:hidden">
-          <Menu className="w-6 h-6" />
-        </button>
+          <button className="md:hidden text-white mix-blend-difference">
+            <Menu className="w-6 h-6" strokeWidth={1.5} />
+          </button>
+        </div>
       </nav>
 
       {/* Hero Section */}
       <section className="relative">
-        <div className="flex flex-col md:flex-row h-[600px]">
+        <div className="flex flex-col md:flex-row h-[100svh] min-h-[700px]">
           {/* Left Dark Side */}
-          <div className="w-full md:w-1/2 bg-[#0a0a0a] text-white flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 md:py-0">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6 max-w-lg">
-              Select the ideal home that suits you
+          <div className="w-full md:w-[45%] bg-[#0A0A0A] text-white flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-32 pb-48 md:py-0 relative z-10">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-medium tracking-tighter leading-[1.05] mb-8 max-w-lg">
+              Select the ideal home that suits you.
             </h1>
-            <p className="text-slate-400 text-sm md:text-base mb-10 max-w-md leading-relaxed">
+            <p className="text-neutral-400 text-base md:text-lg mb-12 max-w-md leading-relaxed font-light">
               Seeking a new house? Our team is prepared to assist you find one matching your daily habits and goals.
             </p>
             <div>
-              <button className="border border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-black transition-colors text-sm font-medium">
+              <button className="group flex items-center gap-4 border-b border-white/30 pb-2 hover:border-white transition-colors text-sm font-medium uppercase tracking-widest">
                 Get started
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
               </button>
             </div>
           </div>
           
           {/* Right Image Side */}
-          <div className="w-full md:w-1/2 relative h-full hidden md:block">
+          <div className="w-full md:w-[55%] relative h-full hidden md:block">
             <Image
-              src="https://picsum.photos/seed/modernhouse/1200/800"
+              src="https://picsum.photos/seed/modernhouse/1600/1200"
               alt="Modern House"
               fill
               className="object-cover"
               priority
               referrerPolicy="no-referrer"
             />
+            <div className="absolute inset-0 bg-black/10"></div>
           </div>
         </div>
 
         {/* Search Bar Overlay */}
-        <div className="container mx-auto px-6 relative -mt-24 md:-mt-16 z-10">
-          <div className="bg-white p-6 md:p-8 rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] flex flex-col md:flex-row items-center gap-6 max-w-5xl mx-auto">
-            <div className="flex-1 w-full">
-              <label className="block text-sm font-semibold text-slate-900 mb-2">Area</label>
+        <div className="container mx-auto px-6 relative -mt-32 md:-mt-20 z-20">
+          <div className="bg-white p-4 md:p-6 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] flex flex-col md:flex-row items-center gap-4 max-w-5xl mx-auto border border-neutral-100">
+            <div className="flex-1 w-full px-4 py-2 hover:bg-neutral-50 transition-colors cursor-pointer">
+              <label className="block text-xs font-bold tracking-wider uppercase text-neutral-400 mb-1">Area</label>
               <div className="relative">
-                <select className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-600 py-3 pl-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900 text-sm">
+                <select className="w-full appearance-none bg-transparent text-neutral-900 font-medium focus:outline-none cursor-pointer">
                   <option value="">Add Location</option>
                   <option value="ny">New York</option>
                   <option value="la">Los Angeles</option>
+                  <option value="mi">Miami</option>
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" strokeWidth={1.5} />
               </div>
             </div>
             
-            <div className="hidden md:block w-px h-12 bg-slate-200"></div>
+            <div className="hidden md:block w-px h-10 bg-neutral-200"></div>
 
-            <div className="flex-1 w-full">
-              <label className="block text-sm font-semibold text-slate-900 mb-2">Property Type</label>
+            <div className="flex-1 w-full px-4 py-2 hover:bg-neutral-50 transition-colors cursor-pointer">
+              <label className="block text-xs font-bold tracking-wider uppercase text-neutral-400 mb-1">Property Type</label>
               <div className="relative">
-                <select className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-600 py-3 pl-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900 text-sm">
+                <select className="w-full appearance-none bg-transparent text-neutral-900 font-medium focus:outline-none cursor-pointer">
                   <option value="">Choose style</option>
-                  <option value="house">House</option>
-                  <option value="apartment">Apartment</option>
+                  <option value="house">Modern House</option>
+                  <option value="apartment">Penthouse</option>
+                  <option value="villa">Luxury Villa</option>
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" strokeWidth={1.5} />
               </div>
             </div>
 
-            <div className="hidden md:block w-px h-12 bg-slate-200"></div>
+            <div className="hidden md:block w-px h-10 bg-neutral-200"></div>
 
-            <div className="flex-1 w-full">
-              <label className="block text-sm font-semibold text-slate-900 mb-2">Price Range</label>
+            <div className="flex-1 w-full px-4 py-2 hover:bg-neutral-50 transition-colors cursor-pointer">
+              <label className="block text-xs font-bold tracking-wider uppercase text-neutral-400 mb-1">Price Range</label>
               <div className="relative">
-                <select className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-600 py-3 pl-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900 text-sm">
+                <select className="w-full appearance-none bg-transparent text-neutral-900 font-medium focus:outline-none cursor-pointer">
                   <option value="">Choose budget</option>
-                  <option value="1">$100k - $500k</option>
-                  <option value="2">$500k - $1M</option>
+                  <option value="1">$500k - $1M</option>
+                  <option value="2">$1M - $5M</option>
+                  <option value="3">$5M+</option>
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" strokeWidth={1.5} />
               </div>
             </div>
 
-            <div className="w-full md:w-auto mt-6 md:mt-0 md:self-end">
-              <button className="w-full md:w-auto bg-[#0a0a0a] text-white px-8 py-3 rounded-md hover:bg-slate-800 transition-colors text-sm font-medium h-[46px]">
+            <div className="w-full md:w-auto mt-4 md:mt-0 md:ml-4">
+              <button className="w-full md:w-auto bg-neutral-900 text-white px-10 py-4 hover:bg-neutral-800 transition-colors text-sm font-medium tracking-wide">
                 Find Now
               </button>
             </div>
@@ -125,319 +131,272 @@ export default function LandingPage() {
       </section>
 
       {/* Best Houses Section */}
-      <section className="container mx-auto px-6 py-24">
-        <div className="flex justify-between items-end mb-10">
-          <h2 className="text-3xl font-bold text-slate-900">Our Best Houses</h2>
-          <Link href="#" className="hidden md:flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">
-            View Everything <ArrowRight className="w-4 h-4" />
+      <section className="container mx-auto px-6 py-32">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight text-neutral-900 mb-4">Our Best Houses</h2>
+            <p className="text-neutral-500 max-w-md">Explore our handpicked selection of premium properties designed for modern living.</p>
+          </div>
+          <Link href="#" className="group flex items-center gap-2 text-sm font-medium text-neutral-900 transition-colors uppercase tracking-widest border-b border-transparent hover:border-neutral-900 pb-1">
+            View Everything <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Property Card 1 */}
-          <div className="group border border-slate-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 bg-white">
-            <div className="relative h-64 w-full overflow-hidden p-3">
-              <div className="relative w-full h-full rounded-xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/house1/600/400"
-                  alt="Greenville"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-xs font-semibold text-slate-900">
-                  For Sale
-                </div>
+          <div className="group cursor-pointer">
+            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
+              <Image
+                src="https://picsum.photos/seed/house1/800/600"
+                alt="Greenville"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
+                For Sale
               </div>
             </div>
-            <div className="p-6 pt-2">
-              <div className="flex items-center gap-1 text-slate-500 text-xs mb-2">
-                <MapPin className="w-3 h-3" /> Aspen, USA
+            <div>
+              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
+                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Aspen, USA
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Greenville</h3>
+              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Greenville</h3>
               
-              <div className="flex items-center justify-between text-slate-600 text-sm mb-6 border-b border-slate-100 pb-6">
+              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
                 <div className="flex items-center gap-2">
-                  <Bed className="w-4 h-4" /> <span>5 Bed Room</span>
+                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>5 Beds</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4" /> <span>5 Bath</span>
+                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>5 Baths</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Square className="w-4 h-4" /> <span>4200 SQ FT</span>
+                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4,200 sqft</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="text-xl font-bold text-slate-900">$ 7,000,00</div>
-                <button className="bg-[#0a0a0a] text-white px-4 py-2 rounded-md text-xs font-medium flex items-center gap-2 hover:bg-slate-800 transition-colors">
-                  View Details <ChevronDown className="w-3 h-3 -rotate-90" />
-                </button>
+              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
+                <div className="text-2xl font-display font-medium text-neutral-900">$7,000,000</div>
+                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
+                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
+                </div>
               </div>
             </div>
           </div>
 
           {/* Property Card 2 */}
-          <div className="group border border-slate-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 bg-white">
-            <div className="relative h-64 w-full overflow-hidden p-3">
-              <div className="relative w-full h-full rounded-xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/house2/600/400"
-                  alt="Mountain Chalet"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-xs font-semibold text-slate-900">
-                  For Sale
-                </div>
+          <div className="group cursor-pointer">
+            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
+              <Image
+                src="https://picsum.photos/seed/house2/800/600"
+                alt="Mountain Chalet"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
+                For Sale
               </div>
             </div>
-            <div className="p-6 pt-2">
-              <div className="flex items-center gap-1 text-slate-500 text-xs mb-2">
-                <MapPin className="w-3 h-3" /> Aspen, USA
+            <div>
+              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
+                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> Aspen, USA
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Mountain Chalet</h3>
+              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Mountain Chalet</h3>
               
-              <div className="flex items-center justify-between text-slate-600 text-sm mb-6 border-b border-slate-100 pb-6">
+              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
                 <div className="flex items-center gap-2">
-                  <Bed className="w-4 h-4" /> <span>4 Bed Room</span>
+                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4 Beds</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4" /> <span>3 Bath</span>
+                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3 Baths</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Square className="w-4 h-4" /> <span>2800 SQ FT</span>
+                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>2,800 sqft</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="text-xl font-bold text-slate-900">$ 4,800,00</div>
-                <button className="bg-[#0a0a0a] text-white px-4 py-2 rounded-md text-xs font-medium flex items-center gap-2 hover:bg-slate-800 transition-colors">
-                  View Details <ChevronDown className="w-3 h-3 -rotate-90" />
-                </button>
+              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
+                <div className="text-2xl font-display font-medium text-neutral-900">$4,800,000</div>
+                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
+                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
+                </div>
               </div>
             </div>
           </div>
 
           {/* Property Card 3 */}
-          <div className="group border border-slate-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 bg-white hidden lg:block">
-            <div className="relative h-64 w-full overflow-hidden p-3">
-              <div className="relative w-full h-full rounded-xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/house3/600/400"
-                  alt="Manhattan"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-xs font-semibold text-slate-900">
-                  For Sale
-                </div>
+          <div className="group cursor-pointer hidden lg:block">
+            <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-neutral-100">
+              <Image
+                src="https://picsum.photos/seed/house3/800/600"
+                alt="Manhattan"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
+                For Sale
               </div>
             </div>
-            <div className="p-6 pt-2">
-              <div className="flex items-center gap-1 text-slate-500 text-xs mb-2">
-                <MapPin className="w-3 h-3" /> Aspen, USA
+            <div>
+              <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
+                <MapPin className="w-3.5 h-3.5" strokeWidth={2} /> New York, USA
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Manhattan</h3>
+              <h3 className="text-2xl font-display font-medium text-neutral-900 mb-4 group-hover:text-neutral-600 transition-colors">Manhattan Penthouse</h3>
               
-              <div className="flex items-center justify-between text-slate-600 text-sm mb-6 border-b border-slate-100 pb-6">
+              <div className="flex items-center gap-6 text-neutral-600 text-sm mb-6">
                 <div className="flex items-center gap-2">
-                  <Bed className="w-4 h-4" /> <span>6 Bed Room</span>
+                  <BedDouble className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>6 Beds</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Bath className="w-4 h-4" /> <span>3 Bath</span>
+                  <Bath className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>4 Baths</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Square className="w-4 h-4" /> <span>3000 SQ FT</span>
+                  <Maximize className="w-4 h-4 text-neutral-400" strokeWidth={1.5} /> <span>3,500 sqft</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="text-xl font-bold text-slate-900">$ 6,500,00</div>
-                <button className="bg-[#0a0a0a] text-white px-4 py-2 rounded-md text-xs font-medium flex items-center gap-2 hover:bg-slate-800 transition-colors">
-                  View Details <ChevronDown className="w-3 h-3 -rotate-90" />
-                </button>
+              <div className="flex items-center justify-between border-t border-neutral-200 pt-6">
+                <div className="text-2xl font-display font-medium text-neutral-900">$6,500,000</div>
+                <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 transition-all duration-300">
+                  <ArrowRight className="w-4 h-4 -rotate-45" strokeWidth={1.5} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-10">
-          <div className="w-2 h-2 rounded-full bg-slate-200"></div>
-          <div className="w-2 h-2 rounded-full bg-slate-200"></div>
-          <div className="w-2 h-2 rounded-full bg-slate-900"></div>
-          <div className="w-2 h-2 rounded-full bg-slate-200"></div>
         </div>
       </section>
 
       {/* What We Do Section */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
-          {/* Left Collage */}
-          <div className="w-full lg:w-1/2 relative">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/mansion1/800/400"
-                  alt="Mansion"
-                  fill
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
+      <section className="bg-white py-32 border-y border-neutral-100">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-20 items-center">
+            {/* Left Collage */}
+            <div className="w-full lg:w-1/2 relative">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="col-span-2 relative aspect-[21/9] overflow-hidden bg-neutral-100">
+                  <Image
+                    src="https://picsum.photos/seed/mansion1/1000/500"
+                    alt="Mansion"
+                    fill
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="relative aspect-square overflow-hidden bg-neutral-100">
+                  <Image
+                    src="https://picsum.photos/seed/pool/600/600"
+                    alt="Pool"
+                    fill
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="relative aspect-square overflow-hidden bg-neutral-100">
+                  <Image
+                    src="https://picsum.photos/seed/modern/600/600"
+                    alt="Modern Home"
+                    fill
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
               </div>
-              <div className="relative h-48 rounded-2xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/pool/400/400"
-                  alt="Pool"
-                  fill
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="relative h-48 rounded-2xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/modern/400/400"
-                  alt="Modern Home"
-                  fill
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-            {/* Center Icon Badge */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0a0a0a] p-4 rounded-full border-4 border-white shadow-xl">
-              <Home className="w-8 h-8 text-white" />
-            </div>
-          </div>
-
-          {/* Right Content */}
-          <div className="w-full lg:w-1/2">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 h-px bg-slate-900"></div>
-              <span className="text-sm font-bold tracking-wider uppercase text-slate-900">What We Do</span>
-            </div>
-            <h2 className="text-4xl font-bold text-slate-900 mb-6">Your Ease Is Our Goal</h2>
-            <p className="text-slate-500 text-lg mb-8 leading-relaxed max-w-lg">
-              helping you get a house that you truly like living is our main goal, your ease is best.
-            </p>
-
-            <div className="grid grid-cols-2 gap-y-4 gap-x-8 mb-10">
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span className="font-semibold text-slate-900">Free Ads</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span className="font-semibold text-slate-900">No Costs</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span className="font-semibold text-slate-900">Guided Tours</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span className="font-semibold text-slate-900">Easy Moves</span>
+              {/* Center Icon Badge */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-full shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]">
+                <Home className="w-8 h-8 text-neutral-900" strokeWidth={1.5} />
               </div>
             </div>
 
-            <button className="border border-slate-200 text-slate-900 px-8 py-3 rounded-md hover:bg-slate-50 transition-colors text-sm font-medium">
-              View More
-            </button>
+            {/* Right Content */}
+            <div className="w-full lg:w-1/2">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-px bg-neutral-900"></div>
+                <span className="text-xs font-bold tracking-widest uppercase text-neutral-900">What We Do</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-medium text-neutral-900 mb-8 tracking-tight">Your ease is our primary goal.</h2>
+              <p className="text-neutral-500 text-lg mb-12 leading-relaxed max-w-lg font-light">
+                Helping you find a house that you truly love living in is our main objective. We streamline the process so you can focus on what matters.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 mb-12">
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 bg-neutral-100 p-1.5 rounded-full">
+                    <Check className="w-4 h-4 text-neutral-900" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-neutral-900 mb-1">Exclusive Listings</h4>
+                    <p className="text-sm text-neutral-500">Access to off-market properties.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 bg-neutral-100 p-1.5 rounded-full">
+                    <Check className="w-4 h-4 text-neutral-900" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-neutral-900 mb-1">Zero Hidden Costs</h4>
+                    <p className="text-sm text-neutral-500">Transparent pricing always.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 bg-neutral-100 p-1.5 rounded-full">
+                    <Check className="w-4 h-4 text-neutral-900" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-neutral-900 mb-1">Guided Tours</h4>
+                    <p className="text-sm text-neutral-500">Personalized property viewings.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 bg-neutral-100 p-1.5 rounded-full">
+                    <Check className="w-4 h-4 text-neutral-900" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-neutral-900 mb-1">Seamless Moves</h4>
+                    <p className="text-sm text-neutral-500">End-to-end relocation support.</p>
+                  </div>
+                </div>
+              </div>
+
+              <button className="bg-white border border-neutral-200 text-neutral-900 px-8 py-4 hover:bg-neutral-50 transition-colors text-sm font-medium tracking-wide">
+                Learn More About Us
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Stats / Founder Section */}
-      <section className="bg-[#0a0a0a] text-white py-20 mt-16">
+      <section className="bg-[#0A0A0A] text-white py-32">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between gap-12">
-            <div className="md:w-1/3">
-              <h3 className="text-xl font-semibold mb-2">Discover The</h3>
-              <p className="text-slate-400">Estately</p>
+          <div className="flex flex-col lg:flex-row justify-between gap-16">
+            <div className="lg:w-1/3">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-px bg-white/30"></div>
+                <span className="text-xs font-bold tracking-widest uppercase text-white/50">The Vision</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-display font-medium tracking-tight mb-4">Discover the<br/>Estately Difference</h3>
             </div>
             
-            <div className="md:w-2/3">
-              <h3 className="text-xl font-semibold mb-4">The Founder: Marref Nada</h3>
-              <p className="text-slate-400 mb-12 max-w-2xl leading-relaxed">
-                our work is built on tight bonds and we're happy to give our good home buying skills to your guests.
+            <div className="lg:w-2/3">
+              <p className="text-neutral-400 text-xl md:text-2xl font-light mb-16 max-w-3xl leading-relaxed">
+                "Our work is built on tight bonds and we're happy to give our exceptional home buying expertise to our clients. We don't just sell houses; we curate lifestyles."
               </p>
               
-              <div className="grid grid-cols-3 gap-8 border-t border-slate-800 pt-12">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-12 border-t border-white/10 pt-16">
                 <div>
-                  <div className="text-4xl md:text-5xl font-light mb-2">132+</div>
-                  <div className="text-xs font-bold tracking-wider text-slate-500 uppercase">Previous Projects</div>
+                  <div className="text-5xl md:text-6xl font-display font-light mb-4">132<span className="text-neutral-500">+</span></div>
+                  <div className="text-xs font-bold tracking-widest text-neutral-500 uppercase">Properties Sold</div>
                 </div>
                 <div>
-                  <div className="text-4xl md:text-5xl font-light mb-2">21y+</div>
-                  <div className="text-xs font-bold tracking-wider text-slate-500 uppercase">Years Experience</div>
+                  <div className="text-5xl md:text-6xl font-display font-light mb-4">21<span className="text-neutral-500">y</span></div>
+                  <div className="text-xs font-bold tracking-widest text-neutral-500 uppercase">Years Experience</div>
                 </div>
-                <div>
-                  <div className="text-4xl md:text-5xl font-light mb-2">44</div>
-                  <div className="text-xs font-bold tracking-wider text-slate-500 uppercase">Ongoing Projects</div>
+                <div className="col-span-2 md:col-span-1">
+                  <div className="text-5xl md:text-6xl font-display font-light mb-4">44</div>
+                  <div className="text-xs font-bold tracking-widest text-neutral-500 uppercase">Ongoing Projects</div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Newest Facts Section */}
-      <section className="container mx-auto px-6 py-24">
-        <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900">Newest Facts</h2>
-          <button className="bg-[#0a0a0a] text-white px-6 py-2.5 rounded-md hover:bg-slate-800 transition-colors text-sm font-medium">
-            View More
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Fact Card 1 */}
-          <div className="group rounded-2xl overflow-hidden cursor-pointer">
-            <div className="relative h-64 w-full overflow-hidden rounded-2xl mb-4">
-              <Image
-                src="https://picsum.photos/seed/fact1/600/400"
-                alt="Fact 1"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-md text-xs font-semibold text-slate-900 shadow-sm">
-                New
-              </div>
-            </div>
-          </div>
-          
-          {/* Fact Card 2 */}
-          <div className="group rounded-2xl overflow-hidden cursor-pointer">
-            <div className="relative h-64 w-full overflow-hidden rounded-2xl mb-4">
-              <Image
-                src="https://picsum.photos/seed/fact2/600/400"
-                alt="Fact 2"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-md text-xs font-semibold text-slate-900 shadow-sm">
-                New
-              </div>
-            </div>
-          </div>
-
-          {/* Fact Card 3 */}
-          <div className="group rounded-2xl overflow-hidden cursor-pointer hidden lg:block">
-            <div className="relative h-64 w-full overflow-hidden rounded-2xl mb-4">
-              <Image
-                src="https://picsum.photos/seed/fact3/600/400"
-                alt="Fact 3"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-md text-xs font-semibold text-slate-900 shadow-sm">
-                New
               </div>
             </div>
           </div>
@@ -445,8 +404,19 @@ export default function LandingPage() {
       </section>
 
       {/* Footer minimal */}
-      <footer className="border-t border-slate-100 py-8 text-center text-slate-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} Estately. All rights reserved.</p>
+      <footer className="bg-white border-t border-neutral-100 py-12">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <Home className="w-5 h-5 text-neutral-900" strokeWidth={1.5} />
+            <span className="text-xl font-display font-medium tracking-tight text-neutral-900">Estately</span>
+          </div>
+          <p className="text-neutral-500 text-sm font-light">&copy; {new Date().getFullYear()} Estately. All rights reserved.</p>
+          <div className="flex gap-6 text-sm font-medium text-neutral-500">
+            <Link href="#" className="hover:text-neutral-900 transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-neutral-900 transition-colors">Terms</Link>
+            <Link href="#" className="hover:text-neutral-900 transition-colors">Instagram</Link>
+          </div>
+        </div>
       </footer>
     </div>
   );
