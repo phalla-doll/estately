@@ -441,7 +441,7 @@ export default function LandingPage() {
             {/* Location 3 */}
             <div className="group relative aspect-[4/5] overflow-hidden cursor-pointer bg-neutral-100">
               <Image 
-                src="https://images.unsplash.com/photo-1540974100753-2c174e50811b?q=80&w=600&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=600&auto=format&fit=crop" 
                 fill 
                 className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
                 alt="Beverly Hills" 
@@ -498,7 +498,7 @@ export default function LandingPage() {
                 </div>
                 <div className="relative aspect-square overflow-hidden bg-neutral-100">
                   <Image
-                    src="https://images.unsplash.com/photo-1600585154526-990dced4ea0d?q=80&w=600&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=600&auto=format&fit=crop"
                     alt="Modern Home"
                     fill
                     className="object-cover"
