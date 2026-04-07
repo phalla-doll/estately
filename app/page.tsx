@@ -19,7 +19,10 @@ import {
   Phone,
   Mail,
   Linkedin,
-  Heart
+  Heart,
+  ArrowLeftRight,
+  X,
+  CheckCircle2
 } from "lucide-react";
 
 const propertiesData = [
@@ -31,6 +34,7 @@ const propertiesData = [
     beds: 5,
     baths: 5,
     sqft: 4200,
+    amenities: ["Smart Home System", "Infinity Pool", "Wine Cellar", "Home Theater"],
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"
   },
   {
@@ -41,6 +45,7 @@ const propertiesData = [
     beds: 4,
     baths: 3,
     sqft: 2800,
+    amenities: ["Ski-in/Ski-out", "Heated Floors", "Outdoor Hot Tub", "Fire Pit"],
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop"
   },
   {
@@ -51,6 +56,7 @@ const propertiesData = [
     beds: 6,
     baths: 4,
     sqft: 3500,
+    amenities: ["Panoramic City Views", "Private Elevator", "Rooftop Terrace", "Concierge"],
     image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop"
   },
   {
@@ -61,6 +67,7 @@ const propertiesData = [
     beds: 7,
     baths: 8,
     sqft: 8500,
+    amenities: ["Tennis Court", "Guest House", "Home Gym", "Gated Entry"],
     image: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=800&auto=format&fit=crop"
   },
   {
@@ -71,6 +78,7 @@ const propertiesData = [
     beds: 5,
     baths: 6,
     sqft: 6100,
+    amenities: ["Private Beach Access", "Boat Dock", "Outdoor Kitchen", "Spa"],
     image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800&auto=format&fit=crop"
   },
   {
@@ -81,6 +89,7 @@ const propertiesData = [
     beds: 4,
     baths: 3,
     sqft: 3200,
+    amenities: ["Solar Panels", "Floor-to-Ceiling Windows", "Zen Garden", "Smart Lighting"],
     image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop"
   }
 ];
@@ -129,6 +138,8 @@ export default function LandingPage() {
   const [bedsFilter, setBedsFilter] = useState("all");
   const [bathsFilter, setBathsFilter] = useState("all");
   const [savedProperties, setSavedProperties] = useState<number[]>([]);
+  const [compareProperties, setCompareProperties] = useState<number[]>([]);
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
 
   const toggleSave = (e: React.MouseEvent, id: number) => {
     e.preventDefault();
@@ -136,6 +147,25 @@ export default function LandingPage() {
     setSavedProperties(prev => 
       prev.includes(id) ? prev.filter(pId => pId !== id) : [...prev, id]
     );
+  };
+
+  const toggleCompare = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCompareProperties(prev => {
+      if (prev.includes(id)) return prev.filter(pId => pId !== id);
+      if (prev.length >= 3) {
+        alert("You can only compare up to 3 properties at a time.");
+        return prev;
+      }
+      return [...prev, id];
+    });
+  };
+
+  const isDifferent = (ids: number[], key: keyof typeof propertiesData[0]) => {
+    if (ids.length <= 1) return false;
+    const values = ids.map(id => propertiesData.find(p => p.id === id)?.[key]);
+    return new Set(values).size > 1;
   };
 
   const filteredProperties = propertiesData.filter(prop => {
@@ -363,16 +393,25 @@ export default function LandingPage() {
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-neutral-900">
                     For Sale
                   </div>
-                  <button 
-                    onClick={(e) => toggleSave(e, property.id)}
-                    className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-white/90 backdrop-blur-md hover:bg-white transition-colors"
-                    aria-label={savedProperties.includes(property.id) ? "Unsave property" : "Save property"}
-                  >
-                    <Heart 
-                      className={`w-4 h-4 transition-colors ${savedProperties.includes(property.id) ? "fill-red-500 text-red-500" : "text-neutral-900"}`} 
-                      strokeWidth={1.5} 
-                    />
-                  </button>
+                  <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+                    <button 
+                      onClick={(e) => toggleSave(e, property.id)}
+                      className="p-2.5 rounded-full bg-white/90 backdrop-blur-md hover:bg-white transition-colors shadow-sm"
+                      aria-label={savedProperties.includes(property.id) ? "Unsave property" : "Save property"}
+                    >
+                      <Heart 
+                        className={`w-4 h-4 transition-colors ${savedProperties.includes(property.id) ? "fill-red-500 text-red-500" : "text-neutral-900"}`} 
+                        strokeWidth={1.5} 
+                      />
+                    </button>
+                    <button 
+                      onClick={(e) => toggleCompare(e, property.id)}
+                      className={`p-2.5 rounded-full backdrop-blur-md transition-colors shadow-sm ${compareProperties.includes(property.id) ? "bg-neutral-900 text-white" : "bg-white/90 hover:bg-white text-neutral-900"}`}
+                      aria-label={compareProperties.includes(property.id) ? "Remove from comparison" : "Add to comparison"}
+                    >
+                      <ArrowLeftRight className="w-4 h-4" strokeWidth={1.5} />
+                    </button>
+                  </div>
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-medium uppercase tracking-wider mb-3">
@@ -823,6 +862,139 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* Compare Sticky Banner */}
+      {compareProperties.length > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] z-40 animate-in slide-in-from-bottom-full duration-300">
+          <div className="container mx-auto px-6 flex justify-between items-center max-w-6xl">
+            <div className="flex items-center gap-4">
+              <div className="flex -space-x-3">
+                {compareProperties.map(id => {
+                  const prop = propertiesData.find(p => p.id === id);
+                  return prop ? (
+                    <div key={id} className="w-12 h-12 rounded-full border-2 border-white overflow-hidden relative shadow-sm">
+                      <Image src={prop.image} fill className="object-cover" alt={prop.name} />
+                    </div>
+                  ) : null;
+                })}
+              </div>
+              <span className="text-sm font-medium text-neutral-900 hidden sm:inline-block">
+                {compareProperties.length} {compareProperties.length === 1 ? 'property' : 'properties'} selected
+              </span>
+            </div>
+            <div className="flex items-center gap-4">
+              <button onClick={() => setCompareProperties([])} className="text-sm text-neutral-500 hover:text-neutral-900 font-medium transition-colors">Clear</button>
+              <button 
+                onClick={() => setIsCompareModalOpen(true)} 
+                disabled={compareProperties.length < 2}
+                className="bg-neutral-900 text-white px-6 py-3 text-sm font-medium hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Compare Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Compare Modal */}
+      {isCompareModalOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 md:p-6 animate-in fade-in duration-200">
+          <div className="bg-white w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl relative">
+            <button 
+              onClick={() => setIsCompareModalOpen(false)} 
+              className="absolute top-6 right-6 p-2 bg-neutral-100 rounded-full hover:bg-neutral-200 transition-colors z-10"
+            >
+              <X className="w-5 h-5 text-neutral-900" strokeWidth={1.5} />
+            </button>
+            <div className="p-8 md:p-10">
+              <h2 className="text-3xl font-display font-medium mb-8 text-neutral-900">Compare Properties</h2>
+              <div className="overflow-x-auto pb-4">
+                <table className="w-full text-left border-collapse min-w-[800px]">
+                  <thead>
+                    <tr>
+                      <th className="p-4 border-b border-neutral-200 w-1/5"></th>
+                      {compareProperties.map(id => {
+                        const prop = propertiesData.find(p => p.id === id);
+                        return (
+                          <th key={id} className="p-4 border-b border-neutral-200 w-1/4 align-top">
+                            <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden mb-4 bg-neutral-100">
+                              <Image src={prop?.image || ''} fill className="object-cover" alt={prop?.name || ''} />
+                              <button 
+                                onClick={() => {
+                                  setCompareProperties(prev => prev.filter(pId => pId !== id));
+                                  if (compareProperties.length <= 2) setIsCompareModalOpen(false);
+                                }} 
+                                className="absolute top-2 right-2 p-1.5 bg-white/90 backdrop-blur-md rounded-full hover:bg-white transition-colors"
+                              >
+                                <X className="w-3.5 h-3.5 text-neutral-900" strokeWidth={2} />
+                              </button>
+                            </div>
+                            <h3 className="font-display font-medium text-lg text-neutral-900">{prop?.name}</h3>
+                            <p className="text-sm text-neutral-500 font-light">{prop?.location}</p>
+                          </th>
+                        )
+                      })}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Price Row */}
+                    <tr className={isDifferent(compareProperties, 'price') ? 'bg-neutral-50/80' : ''}>
+                      <td className="p-4 border-b border-neutral-100 font-medium text-sm text-neutral-500 uppercase tracking-wider">Price</td>
+                      {compareProperties.map(id => {
+                        const prop = propertiesData.find(p => p.id === id);
+                        return <td key={id} className={`p-4 border-b border-neutral-100 font-medium text-lg ${isDifferent(compareProperties, 'price') ? 'text-neutral-900' : 'text-neutral-600'}`}>{prop ? formatPrice(prop.price) : ''}</td>
+                      })}
+                    </tr>
+                    {/* Beds Row */}
+                    <tr className={isDifferent(compareProperties, 'beds') ? 'bg-neutral-50/80' : ''}>
+                      <td className="p-4 border-b border-neutral-100 font-medium text-sm text-neutral-500 uppercase tracking-wider">Bedrooms</td>
+                      {compareProperties.map(id => {
+                        const prop = propertiesData.find(p => p.id === id);
+                        return <td key={id} className={`p-4 border-b border-neutral-100 ${isDifferent(compareProperties, 'beds') ? 'text-neutral-900 font-medium' : 'text-neutral-600'}`}>{prop?.beds}</td>
+                      })}
+                    </tr>
+                    {/* Baths Row */}
+                    <tr className={isDifferent(compareProperties, 'baths') ? 'bg-neutral-50/80' : ''}>
+                      <td className="p-4 border-b border-neutral-100 font-medium text-sm text-neutral-500 uppercase tracking-wider">Bathrooms</td>
+                      {compareProperties.map(id => {
+                        const prop = propertiesData.find(p => p.id === id);
+                        return <td key={id} className={`p-4 border-b border-neutral-100 ${isDifferent(compareProperties, 'baths') ? 'text-neutral-900 font-medium' : 'text-neutral-600'}`}>{prop?.baths}</td>
+                      })}
+                    </tr>
+                    {/* Sqft Row */}
+                    <tr className={isDifferent(compareProperties, 'sqft') ? 'bg-neutral-50/80' : ''}>
+                      <td className="p-4 border-b border-neutral-100 font-medium text-sm text-neutral-500 uppercase tracking-wider">Square Feet</td>
+                      {compareProperties.map(id => {
+                        const prop = propertiesData.find(p => p.id === id);
+                        return <td key={id} className={`p-4 border-b border-neutral-100 ${isDifferent(compareProperties, 'sqft') ? 'text-neutral-900 font-medium' : 'text-neutral-600'}`}>{prop?.sqft.toLocaleString()} sqft</td>
+                      })}
+                    </tr>
+                    {/* Amenities Row */}
+                    <tr>
+                      <td className="p-4 border-b border-neutral-100 font-medium text-sm text-neutral-500 uppercase tracking-wider align-top pt-6">Amenities</td>
+                      {compareProperties.map(id => {
+                        const prop = propertiesData.find(p => p.id === id);
+                        return (
+                          <td key={id} className="p-4 border-b border-neutral-100 align-top pt-6">
+                            <ul className="space-y-3">
+                              {prop?.amenities?.map((amenity, i) => (
+                                <li key={i} className="flex items-start gap-2.5 text-sm text-neutral-600">
+                                  <CheckCircle2 className="w-4 h-4 text-neutral-900 shrink-0 mt-0.5" strokeWidth={1.5} />
+                                  <span>{amenity}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </td>
+                        )
+                      })}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
