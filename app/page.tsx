@@ -679,22 +679,56 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-neutral-900 text-white py-32 text-center px-6 relative overflow-hidden">
+      <section className="bg-neutral-900 text-white py-32 px-6 relative overflow-hidden">
         {/* Subtle background pattern/gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_100%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05)_0%,transparent_80%)]"></div>
         
-        <div className="max-w-3xl mx-auto relative z-10">
-          <h2 className="text-4xl md:text-6xl font-display font-medium tracking-tight mb-6">Ready to find your dream home?</h2>
-          <p className="text-neutral-400 text-lg mb-12 font-light max-w-xl mx-auto">
-            Join our exclusive network of buyers and sellers to experience real estate at its finest.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto bg-white text-neutral-900 px-8 py-4 hover:bg-neutral-200 transition-colors text-sm font-medium tracking-wide">
-              Browse Properties
-            </button>
-            <button className="w-full sm:w-auto bg-transparent border border-white/30 text-white px-8 py-4 hover:bg-white/10 transition-colors text-sm font-medium tracking-wide">
-              Contact an Agent
-            </button>
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="w-full lg:w-1/2">
+              <h2 className="text-4xl md:text-6xl font-display font-medium tracking-tight mb-6">Ready to find your dream home?</h2>
+              <p className="text-neutral-400 text-lg mb-10 font-light max-w-md leading-relaxed">
+                Join our exclusive network of buyers and sellers to experience real estate at its finest. Our agents are ready to assist you.
+              </p>
+              <div className="flex items-center gap-4">
+                <button className="bg-white text-neutral-900 px-8 py-4 hover:bg-neutral-200 transition-colors text-sm font-medium tracking-wide">
+                  Browse Properties
+                </button>
+              </div>
+            </div>
+            
+            <div className="w-full lg:w-1/2">
+              <div className="bg-[#111111] border border-white/10 p-8 md:p-10">
+                <h3 className="text-2xl font-display font-medium mb-8">Contact an Agent</h3>
+                <form className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-xs font-medium tracking-wider uppercase text-neutral-400 mb-2">First Name</label>
+                      <input type="text" className="w-full bg-transparent border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white transition-colors" placeholder="John" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium tracking-wider uppercase text-neutral-400 mb-2">Last Name</label>
+                      <input type="text" className="w-full bg-transparent border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white transition-colors" placeholder="Doe" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium tracking-wider uppercase text-neutral-400 mb-2">Email Address</label>
+                    <input type="email" className="w-full bg-transparent border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white transition-colors" placeholder="john@example.com" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium tracking-wider uppercase text-neutral-400 mb-2">Phone Number</label>
+                    <input type="tel" className="w-full bg-transparent border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white transition-colors" placeholder="+1 (555) 000-0000" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium tracking-wider uppercase text-neutral-400 mb-2">Message</label>
+                    <textarea rows={4} className="w-full bg-transparent border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white transition-colors resize-none" placeholder="I'm interested in buying a property..."></textarea>
+                  </div>
+                  <button type="submit" className="w-full bg-white text-neutral-900 px-8 py-4 mt-2 hover:bg-neutral-200 transition-colors text-sm font-medium tracking-wide">
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </section>
